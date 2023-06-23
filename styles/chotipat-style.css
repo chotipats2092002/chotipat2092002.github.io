@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Orbitron", sans-serif;
+}
+html {
+  background-color: #021631;
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  color: white;
+  background-color: #042c62;
+  border: 5px solid white;
+  border-radius: 25px;
+}
+
+.title {
+  text-align: center;
+  margin: 20px;
+  font-size: 50px;
+  color: yellow;
+  text-shadow: 3px 1px 1px white;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 25px;
+}
+
+#p1 {
+  margin-bottom: 5px;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+#p2 {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+ul {
+  margin-left: 100px;
+  font-size: small;
+  line-height: 1.5;
+}
