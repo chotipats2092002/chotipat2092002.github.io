@@ -46,5 +46,23 @@ img {
 ul {
   margin-left: 100px;
   font-size: small;
-  line-height: 1.5;
+  /* padding-left: 1em; */
+}
+
+#pic1 {
+  margin-bottom: 15px;
+}
+#pic2 {
+  margin-bottom: 5px;
+}
+figcaption {
+  text-align: center;
+  font-size: smaller;
+}
+li{
+  line-height: 30px;
+  padding-left: 1em;
+}
+.popular {
+  border: 3px yellow dashed;
 }
