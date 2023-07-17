@@ -1,0 +1,21 @@
+h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+@media screen and (max-width:768px) {
+    body {
+        font-size:large;
+    }
+}
+@media screen and (max-width:375px) {
+    body {
+        font-size:medium;
+    }
+    h1 {
+        font-size: medium;
+    }
+    h2 {
+        font-size: small;
+    }
+}
