@@ -33,11 +33,11 @@
         let divs = document.querySelectorAll('div');
         for (let i = 0; i < divs.length; i++) {
             if (i % 2 !== 0) {
-                divs[i].onmouseover = function (e) {
+                divs[i].onclick = function (e) {
                     e.target.style.backgroundColor = "yellow";
                 }
             } else {
-                divs[i].onmouseover = function (e) {
+                divs[i].onclick = function (e) {
                     e.target.style.backgroundColor = bgChange();
                 }
             }
