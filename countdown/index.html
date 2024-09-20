@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End Of Co-Op Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        h1, h2 {
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="mainTitle"></h1>
+    <h2 id="endDateText"></h2>
+    <p id="currentDate"></p>
+    <p id="thaiDate"></p>
+
+    <div id="countdown"></div>
+
+    <p>Totals: <span id="totalMonths"></span> Months <span id="totalDays"></span> Days</p>
+
+    <script>
+        // Set the end date information
+        const endDateString = "March 31, 2025";
+
+        // Function to get current date in English
+        function getCurrentDateEnglish() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            return today.toLocaleDateString('en-US', options);
+        }
+
+        // Function to get current date in Thai
+        function getCurrentDateThai() {
+            const days = ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์'];
+            const months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+            const today = new Date();
+            const day = days[today.getDay()];
+            const date = today.getDate();
+            const month = months[today.getMonth()];
+            const year = today.getFullYear() + 543; // Convert to Buddhist year
+            return `${day}ที่ ${date} ${month} ${year}`;
+        }
+
+        // Function to calculate total months and days left
+        function calculateTotalMonthsAndDays() {
+            const now = new Date();
+            const endDate = new Date(endDateString);
+            
+            let totalMonths = (endDate.getFullYear() - now.getFullYear()) * 12 + (endDate.getMonth() - now.getMonth());
+            let totalDays = endDate.getDate() - now.getDate();
+
+            if (totalDays < 0) {
+                totalMonths--;
+                const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                totalDays += previousMonth.getDate();
+            }
+
+            return { totalMonths, totalDays };
+        }
+
+        // Display the dates
+        document.getElementById("mainTitle").innerHTML = "End of student life";
+        document.getElementById("endDateText").innerHTML = `Until ${endDateString}`;
+        document.getElementById("currentDate").innerHTML = getCurrentDateEnglish();
+        document.getElementById("thaiDate").innerHTML = getCurrentDateThai();
+
+        // Countdown logic
+        function countdown() {
+            const endDate = new Date(endDateString).getTime();
+            const now = new Date().getTime();
+            const timeLeft = endDate - now;
+
+            const weeks = Math.floor(timeLeft / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor((timeLeft % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                weeks + " Weeks " + days + " Days " + hours + " Hours " +
+                minutes + " Minutes " + seconds + " Seconds ";
+
+            const { totalMonths, totalDays } = calculateTotalMonthsAndDays();
+            document.getElementById("totalMonths").innerHTML = totalMonths;
+            document.getElementById("totalDays").innerHTML = totalDays;
+
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "Time's up!";
+                document.getElementById("totalMonths").innerHTML = 0;
+                document.getElementById("totalDays").innerHTML = 0;
+            }
+        }
+
+        setInterval(countdown, 1000);
+    </script>
+
+</body>
+</html>
